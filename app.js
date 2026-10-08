@@ -2,7 +2,7 @@
 const params = new URLSearchParams(location.search);
 const TO = params.get("to") || "";
 const FROM = params.get("from") || "";
-const QUESTION = params.get("q") || "Do You love u?,try pressing no first pls 😊?";
+const QUESTION = params.get("q") || "Do You love me taleen?,try pressing no first pls 😊?";
 
 const $ = (id) => document.getElementById(id);
 const hint = $("hint"), ask = $("ask"), done = $("done");

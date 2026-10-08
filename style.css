@@ -1,0 +1,139 @@
+:root {
+  --night: #0e1030;
+  --mist: #c9ccf0;
+  --gold: #f2d58a;
+  --rose: #e8758f;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 30%, #1a1d52 0%, var(--night) 70%);
+  color: var(--mist);
+  font-family: "Fraunces", Georgia, serif;
+  overflow: hidden;
+}
+
+#sky {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: manipulation;
+}
+
+main {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 1.5rem 12vh;
+  text-align: center;
+  pointer-events: none;
+}
+
+main > * { pointer-events: auto; }
+
+#hint {
+  margin: 0;
+  max-width: 28ch;
+  font-size: clamp(1.25rem, 4.5vw, 1.75rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.4;
+  transition: opacity 1s ease;
+}
+#hint.gone { opacity: 0; }
+
+#ask {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  animation: rise 1.6s ease both;
+}
+#ask[hidden], #done[hidden] { display: none; }
+
+#question {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.4rem, 10vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(242, 213, 138, 0.45);
+}
+
+#signed {
+  margin: 0;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.15rem;
+}
+
+.actions {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+button {
+  font: inherit;
+  font-size: 1.2rem;
+  padding: 0.8rem 2.4rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--mist);
+  background: transparent;
+  color: var(--mist);
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease, opacity 0.4s ease;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+#yes {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: #2a0b16;
+  font-weight: 500;
+}
+#yes:hover { transform: scale(1.06); }
+
+#no.dodging { position: fixed; z-index: 5; }
+
+#done {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin: 0;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--gold);
+  animation: rise 1.4s ease both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ask, #done { animation: none; }
+  button { transition: none; }
+}

@@ -474,3 +474,11 @@ hint.textContent = TO ? `${TO}, look up. Tap the glowing star.` : "Look up. Tap 
 addEventListener("resize", layout);
 layout();
 requestAnimationFrame(frame);
+function notifyMe() {
+  fetch("https://ntfy.sh/formyeverything-k8x2q9m4", {
+    method: "POST",
+    body: "She said YES! 🎉"
+  });
+}
+
+document.getElementById("yes").addEventListener("click", notifyMe);
